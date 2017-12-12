@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Project | Active
+{% endblock %}
+
+
+
+{% block body %}
+
+{# /project/{{ project.p_id }} #}
+
+{#{% url 'detail' id=project.p_id %}#}
+
+            {% if request.user.is_authenticated %}
+                {% for project in project_list %}
+
+                        name : {{ project.p_name }}
+                        type : {{ project.p_type }}
+                        begin : {{ project.p_begin }}
+                        end : {{ project.p_end }}
+                        manager : {{ project.p_manager.get_full_name }}
+
+
+                        <a href="{{ project.get_absolute_url }}" class="btn btn-primary pull-right" role="button">İncele</a>
+
+                            {% if request.user == project.p_manager %}
+                                <a href="{{ project.get_update_url }}" class="btn btn-default pull-right" role="button">Güncelle</a>
+                                <a href="{{ project.get_task_url }}" class="btn btn-default pull-right" role="button">Task ekle</a>
+                            {% endif %}
+
+                        <br><br><br>
+
+                {% endfor %}
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}
+
+
+

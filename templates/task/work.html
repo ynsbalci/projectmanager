@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Task | Work
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+
+                    <h2>id : {{ task.t_id }}<br></h2>
+                    <h2>project : {{ task.t_project }}<br></h2>
+                    <h2>name : {{ task.t_name }}<br></h2>
+                    <h2>defination : {{ task.t_defination }}<br></h2>
+                    <h2>begin : {{ task.t_begin }}<br></h2>
+                    <h2>end : {{ task.t_end }}<br></h2>
+                    <h2>status : {{ task.t_status }}<br></h2>
+
+                    {% if request.user == task.t_project.p_manager %}
+
+                        <a href="{{ task.get_update_url }}" class="btn btn-default pull-right" role="button">Güncelle</a>
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|bootstrap }}
+                        <input class="btn btn-primary" type="submit" value="Bu task ı al">
+                    </form>
+                    <br><br>
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}

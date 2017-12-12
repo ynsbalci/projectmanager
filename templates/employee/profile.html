@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Employee | Profile
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+
+
+                <h2>last_login : {{ employee.last_login }}<br></h2>
+                <h2>is_superuser : {{ employee.is_superuser }}<br></h2>
+                <h2>username : {{ employee.username }}<br></h2>
+                <h2>first_name : {{ employee.first_name }}<br></h2>
+                <h2>last_name : {{ employee.last_name }}<br></h2>
+                <h2>email : {{ employee.email }}<br></h2>
+                <h2>is_staff : {{ employee.is_staff }}<br></h2>
+                <h2>date_joined : {{ employee.date_joined }}<br></h2>
+                <h2>e_phone : {{ employee.e_phone }}<br></h2>
+                <h2>e_date_left : {{ employee.e_date_left }}<br></h2>
+                <h2>e_qualification : {{ employee.e_qualification }}<br></h2>
+                <h2>e_salary_rate : {{ employee.e_salary_rate }}<br></h2>
+
+
+                     <a href="{{ employee.get_update_url }}" class="btn btn-primary pull-right" role="button">Update</a>
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}

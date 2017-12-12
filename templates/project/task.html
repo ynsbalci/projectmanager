@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Project | Task
+{% endblock %}
+
+
+
+{% block body %}
+
+
+            {% if request.user.is_authenticated %}
+
+                    <h2>name : {{ project.p_name }}<br></h2>
+                    <h2>type : {{ project.p_type }}<br></h2>
+                    <h2>begin : {{ project.p_begin }}<br></h2>
+                    <h2>end : {{ project.p_end }}<br></h2>
+                    <h2>manager : {{ project.p_manager }}<br></h2>
+                    <h2>status : {{ project.p_status }}<br></h2>
+                    <h2>defination : {{ project.p_defination }}<br></h2>
+
+
+                    <br> <br>
+                    <h2>task ekle</h2><br>
+                    <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|bootstrap }}
+                            <input class="btn btn-primary" type="submit" value="Add Task">
+                        </form>
+
+
+
+                    <br><br>
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}
+
+
+

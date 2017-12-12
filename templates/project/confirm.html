@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Project | Confirm
+{% endblock %}
+
+
+
+{% block body %}
+
+{# /project/{{ project.p_id }} #}
+
+{#{% url 'vote' id=project.p_id %}#}
+
+            {% if request.user.is_authenticated %}
+                {% for project in project_list %}
+
+                    name : {{ project.p_name }}
+                    type : {{ project.p_type }}
+                    begin : {{ project.p_begin }}
+                    end : {{ project.p_end }}
+                    manager : {{ project.p_manager.get_full_name }}
+
+                    {% for vote in vote_list %}
+                        {% if  vote.v_project ==  project %}
+                            yapılcak
+                        {% endif %}
+                    {% endfor %}
+
+                    <a href="{{ project.get_vote_url }}" class="btn btn-primary pull-right" role="button">Oyla</a>
+                    {% if request.user == project.p_manager %}
+                        <a href="{{ project.get_update_url }}" class="btn btn-default pull-right" role="button">Güncelle</a>
+
+                    {% endif %}
+
+
+                    <br><br>
+                {% endfor %}
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}
+
+
+

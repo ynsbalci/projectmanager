@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Employee | Index
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+                {% for employee in employee_list %}
+
+                        username : {{ employee.username }}
+                        first_name : {{ employee.first_name }}
+                        last_name : {{ employee.last_name }}
+                        email : {{ employee.email }}
+
+                        <a href="{{ employee.get_absolute_url }}" class="btn btn-primary pull-right" role="button">İncele</a>
+
+                    <br><br>
+                {% endfor %}
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}

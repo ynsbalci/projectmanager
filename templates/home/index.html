@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Project Manager | Home | Index
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="row">
+            {% if not request.user.is_authenticated %}
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <br><br><br><br>
+
+                    <div class="row container">
+                        <a href="{% url 'employee:login' %}" class="btn btn-primary btn-lg">Login</a>
+                    </div>
+                </div>
+            <div class="col-md-5"></div>
+            {% else %}
+                 <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="well">
+                        <h1>{{ request.user.get_full_name }}</h1><br>
+                        ana sayfa böle gözükçekbr <br>
+                        burad araporlama kısmı olucak
+
+
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

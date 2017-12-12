@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Fault | Index
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+                {% for fault in fault_list %}
+                    {% if not fault.f_status %}
+                        name : {{ fault.f_name }}
+                        task : {{ fault.f_task }}
+                        date : {{ fault.f_date }}
+                        employee : {{ fault.f_employee.get_full_name }}
+
+                        <a href="{{ fault.get_absolute_url }}" class="btn btn-primary pull-right" role="button">İncele</a>
+
+
+                        {% if request.user == fault.f_employee %}
+                            <a href="{{ fault.get_update_url }}" class="btn btn-default pull-right" role="button">Güncelle</a>
+                        {% endif %}
+
+                        <br><br>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}

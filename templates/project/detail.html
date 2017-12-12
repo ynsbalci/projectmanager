@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Project | Detail
+{% endblock %}
+
+
+
+{% block body %}
+
+
+            {% if request.user.is_authenticated %}
+
+                    <h2>name : {{ project.p_name }}<br></h2>
+                    <h2>type : {{ project.p_type }}<br></h2>
+                    <h2>begin : {{ project.p_begin }}<br></h2>
+                    <h2>end : {{ project.p_end }}<br></h2>
+                    <h2>manager : {{ project.p_manager }}<br></h2>
+                    <h2>defination : {{ project.p_defination }}<br></h2>
+
+                    {% if request.user == project.p_manager %}
+                        <a href="{{ project.get_update_url }}" class="btn btn-default pull-right" role="button">Güncelle</a>
+                    {% endif %}
+
+
+
+                    <br><br>
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}
+
+
+

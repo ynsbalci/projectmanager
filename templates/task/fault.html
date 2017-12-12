@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Task | Fault
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+
+                    <h2>project : {{ task.t_project }}<br></h2>
+                    <h2>name : {{ task.t_name }}<br></h2>
+                    <h2>manager : {{ task.t_ }} yapılcak<br></h2>
+                    <h2>defination : {{ task.t_defination }}<br></h2>
+                    <h2>begin : {{ task.t_begin }}<br></h2>
+                    <h2>end : {{ task.t_end }}<br></h2>
+                    <h2>status : {{ task.t_status }}<br></h2>
+
+                    <br><br>
+
+                    <h2>Bu görevi al</h2><br>
+                    <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|bootstrap }}
+                            <input class="btn btn-primary" type="submit" value="Al">
+                        </form>
+
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Task | Index
+{% endblock %}
+
+
+
+{% block body %}
+
+            {% if request.user.is_authenticated %}
+
+                    <h2>project : {{ task.t_project }}<br></h2>
+                    <h2>name : {{ task.t_name }}<br></h2>
+
+
+                    <h2>begin : {{ task.t_begin }}<br></h2>
+                    <h2>end : {{ task.t_end }}<br></h2>
+                    <h2>status : {{ task.t_status }}<br></h2>
+                    <h2>defination : {{ task.t_defination }}<br></h2>
+
+                    <br><br>
+
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+
+
+{% endblock %}

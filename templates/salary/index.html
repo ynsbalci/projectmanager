@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}
+Project Manager | Salary | Index
+{% endblock %}
+
+
+
+{% block body %}
+
+
+            {% if request.user.is_authenticated %}
+            {% else %}
+                 giriş yapılmaış
+            {% endif %}
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% for employee in employee_list %}
+
+                        username : {{ employee.username }}
+                        first_name : {{ employee.first_name }}
+                        last_name : {{ employee.last_name }}
+                        email : {{ employee.email }}
+
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <input class="btn btn-primary" type="submit" value="Add Fault">
+                    <br><br>
+                {% endfor %}
+
+
+                </form>
+
+
+
+{% endblock %}
