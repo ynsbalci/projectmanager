@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
 
 
-
 # Create your models here.
 class Employee(AbstractUser):
     e_phone = models.CharField(blank=True, null=True, max_length=120, verbose_name="Phone")
